@@ -145,7 +145,7 @@
 
                 const data = await response.json();
 
-                if (response.ok) {
+                if (response.ok && data.success) {
                     alert('Registration successful!');
                     window.location.href = 'login.html'; // Redirect to login page
                 } else {
