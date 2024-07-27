@@ -246,60 +246,50 @@
     </div>
 
     <script>
-        const pointsEndpoint = 'http://localhost:9112/get-user-points';
-        const userDetailsEndpoint = 'http://localhost:9112/get-user-details';
+    const pointsEndpoint = '/api/get-user-points';
+    const userDetailsEndpoint = '/api/get-user-details';
 
-        async function fetchPoints(username) {
-            try {
-                const response = await fetch(`${pointsEndpoint}?username=${encodeURIComponent(username)}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
-                if (data.success) {
-                    document.getElementById('points').textContent = data.points;
-                } else {
-                    document.getElementById('points').textContent = 'Error fetching points';
-                }
-            } catch (error) {
-                console.error('Error:', error);
+    async function fetchPoints(username) {
+        try {
+            const response = await fetch(`${pointsEndpoint}?username=${encodeURIComponent(username)}`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            if (data.success) {
+                document.getElementById('points').textContent = data.points;
+            } else {
                 document.getElementById('points').textContent = 'Error fetching points';
             }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('points').textContent = 'Error fetching points';
         }
+    }
 
-        async function fetchUserDetails() {
-            const token = localStorage.getItem('token');
-            try {
-                const response = await fetch(userDetailsEndpoint, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
-                if (data.success) {
-                    document.getElementById('profile-name').textContent = data.username;
-                    document.getElementById('profile-name').style.display = 'block';
-                    document.getElementById('login-button').style.display = 'none';
-                    document.getElementById('login-link').style.display = 'none';
-                    document.getElementById('register-link').style.display = 'none';
-                    document.getElementById('logout-link').style.display = 'block';
-                    document.getElementById('my-account-link').style.display = 'block';
-                    document.getElementById('settings-link').style.display = 'block';
-                    const mockGatewayLink = document.createElement('a');
-                    mockGatewayLink.href = 'payment.html';
-                    mockGatewayLink.textContent = 'Mock-gateway';
-                    document.getElementById('navbar').appendChild(mockGatewayLink);
-                    fetchPoints(data.username);
-                } else {
-                    document.getElementById('profile-name').style.display = 'none';
-                    document.getElementById('login-button').style.display = 'block';
-                    document.getElementById('login-link').style.display = 'block';
-                    document.getElementById('register-link').style.display = 'block';
-                    document.getElementById('logout-link').style.display = 'none';
-                    document.getElementById('my-account-link').style.display = 'none';
-                    document.getElementById('settings-link').style.display = 'none';
+    async function fetchUserDetails() {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch(userDetailsEndpoint, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
-            } catch (error) {
-                console.error('Error:', error);
+            });
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            if (data.success) {
+                document.getElementById('profile-name').textContent = data.username;
+                document.getElementById('profile-name').style.display = 'block';
+                document.getElementById('login-button').style.display = 'none';
+                document.getElementById('login-link').style.display = 'none';
+                document.getElementById('register-link').style.display = 'none';
+                document.getElementById('logout-link').style.display = 'block';
+                document.getElementById('my-account-link').style.display = 'block';
+                document.getElementById('settings-link').style.display = 'block';
+                const mockGatewayLink = document.createElement('a');
+                mockGatewayLink.href = 'payment.html';
+                mockGatewayLink.textContent = 'Mock-gateway';
+                document.getElementById('navbar').appendChild(mockGatewayLink);
+                fetchPoints(data.username);
+            } else {
                 document.getElementById('profile-name').style.display = 'none';
                 document.getElementById('login-button').style.display = 'block';
                 document.getElementById('login-link').style.display = 'block';
@@ -308,10 +298,8 @@
                 document.getElementById('my-account-link').style.display = 'none';
                 document.getElementById('settings-link').style.display = 'none';
             }
-        }
-
-        function logout() {
-            localStorage.removeItem('token');
+        } catch (error) {
+            console.error('Error:', error);
             document.getElementById('profile-name').style.display = 'none';
             document.getElementById('login-button').style.display = 'block';
             document.getElementById('login-link').style.display = 'block';
@@ -319,30 +307,42 @@
             document.getElementById('logout-link').style.display = 'none';
             document.getElementById('my-account-link').style.display = 'none';
             document.getElementById('settings-link').style.display = 'none';
-            document.getElementById('points').textContent = 'Loading...';
-            const navbar = document.getElementById('navbar');
-            const mockGatewayLink = navbar.querySelector('a[href="payment.html"]');
-            if (mockGatewayLink) {
-                navbar.removeChild(mockGatewayLink);
-            }
         }
+    }
 
-        document.getElementById('logout-link').addEventListener('click', logout);
-
-        window.addEventListener('load', () => {
-            fetchUserDetails();
-        });
-
-        let currentSlide = 0;
-        const carouselItems = document.querySelectorAll('.carousel-item');
-
-        function showNextSlide() {
-            carouselItems[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % carouselItems.length;
-            carouselItems[currentSlide].classList.add('active');
+    function logout() {
+        localStorage.removeItem('token');
+        document.getElementById('profile-name').style.display = 'none';
+        document.getElementById('login-button').style.display = 'block';
+        document.getElementById('login-link').style.display = 'block';
+        document.getElementById('register-link').style.display = 'block';
+        document.getElementById('logout-link').style.display = 'none';
+        document.getElementById('my-account-link').style.display = 'none';
+        document.getElementById('settings-link').style.display = 'none';
+        document.getElementById('points').textContent = 'Loading...';
+        const navbar = document.getElementById('navbar');
+        const mockGatewayLink = navbar.querySelector('a[href="payment.html"]');
+        if (mockGatewayLink) {
+            navbar.removeChild(mockGatewayLink);
         }
+    }
 
-        setInterval(showNextSlide, 3000); // 3 seconds
-    </script>
+    document.getElementById('logout-link').addEventListener('click', logout);
+
+    window.addEventListener('load', () => {
+        fetchUserDetails();
+    });
+
+    let currentSlide = 0;
+    const carouselItems = document.querySelectorAll('.carousel-item');
+
+    function showNextSlide() {
+        carouselItems[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % carouselItems.length;
+        carouselItems[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 3000); // 3 seconds
+</script>
 </body>
 </html>
