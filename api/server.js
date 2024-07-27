@@ -65,6 +65,7 @@ app.post('/api/register', async (req, res) => {
         await newUser.save();
         res.json({ success: true, message: 'User registered successfully', userId: newUser._id });
     } catch (err) {
+        console.error('Error registering user:', err);
         if (err.code === 11000) {
             res.status(400).json({ success: false, message: 'Username or email already exists' });
         } else {
@@ -97,6 +98,7 @@ app.post('/api/login', async (req, res) => {
 
         res.json({ success: true, message: 'Login successful', token });
     } catch (err) {
+        console.error('Error logging in:', err);
         res.status(500).json({ success: false, message: 'Error logging in', error: err.message });
     }
 });
@@ -122,6 +124,7 @@ app.post('/api/process-payment', authenticateToken, async (req, res) => {
             res.status(404).json({ success: false, message: 'User not found' });
         }
     } catch (err) {
+        console.error('Error processing payment:', err);
         res.status(500).json({ success: false, message: 'Error processing payment', error: err.message });
     }
 });
@@ -142,6 +145,7 @@ app.get('/api/get-user-points', async (req, res) => {
             res.status(404).json({ success: false, message: 'User not found' });
         }
     } catch (err) {
+        console.error('Error fetching user points:', err);
         res.status(500).json({ success: false, message: 'Error fetching user points', error: err.message });
     }
 });
@@ -156,6 +160,7 @@ app.get('/api/get-user-details', authenticateToken, async (req, res) => {
             res.status(404).json({ success: false, message: 'User not found' });
         }
     } catch (err) {
+        console.error('Error fetching user details:', err);
         res.status(500).json({ success: false, message: 'Error fetching user details', error: err.message });
     }
 });
@@ -168,11 +173,6 @@ app.post('/api/logout', (req, res) => {
 // Serve homepage.html as the default page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'homepage.html'));
-});
-
-// Serve registration.html for the registration route
-app.get('/registration.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'registration.html'));
 });
 
 // Start the server
