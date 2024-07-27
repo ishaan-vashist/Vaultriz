@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULTRIZ - Payment Gateway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Press Start 2P', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #DAA520;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+            text-align: left;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .input-group div {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="number"], input[type="password"] {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
+            transform: scale(1.05);
+            border-color: #FFD700;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .row div {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .row div:last-child {
+            margin-right: 0;
+        }
+
+        .row div:first-child {
+            margin-right: 10px;
+        }
+
+        .row div:last-child {
+            margin-left: 10px;
+        }
+
+        .row input {
+            padding: 10px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #DAA520;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        .note {
+            font-size: 0.8rem;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .row div {
+                margin: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <h1>Payment Gateway</h1>
+        <form id="payment-form">
+            <div class="input-group">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" min="1" step="any" required>
+                </div>
+                <div>
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="expiry-date">ExpDate:</label>
+                        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+                    </div>
+                    <div>
+                        <label for="cvv">CVV:</label>
+                        <input type="password" id="cvv" name="cvv" required>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Process Payment">
+        </form>
+        <div class="note">(No card information is saved)</div>
+        <div id="payment-message" class="error-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const amount = document.getElementById('amount').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            try {
+                const response = await fetch('http://localhost:9112/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ username, amount, cardNumber, expiryDate, cvv })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to process payment');
+                }
+
+                const data = await response.json();
+                if (data.success) {
+                    const pointsUrl = `points.html?username=${encodeURIComponent(username)}`;
+                    window.location.href = pointsUrl;
+                } else {
+                    document.getElementById('payment-message').innerHTML = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                document.getElementById('payment-message').innerHTML = `Error processing payment: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

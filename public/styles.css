@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #282c34;
+    color: #61dafb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: #20232a;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    max-width: 400px;
+    width: 100%;
+    transition: border-radius 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    border-radius: 20px;
+    box-shadow: 0 0 100px #1aff00;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+p {
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+
+.link-to-payment {
+    margin-top: 1em;
+    display: block;
+    color: #61dafb;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.link-to-payment:hover {
+    color: #21a1f1;
+}

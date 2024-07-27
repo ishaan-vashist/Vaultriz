@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | VAULTRIZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: sticky;
+            top: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: rgba(51, 51, 51, 0.7);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar a:hover {
+            background-color: rgba(68, 68, 68, 0.8);
+            transform: scale(1.05);
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 3rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+        p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+        .community-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .community-item {
+            margin: 15px 0;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .community-item:hover {
+            background-color: rgba(68, 68, 68, 0.9);
+            transform: scale(1.05);
+        }
+        .community-item a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        .community-item a:hover {
+            text-decoration: underline;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: rgba(51, 51, 51, 0.7);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-button:hover {
+            background-color: rgba(68, 68, 68, 0.8);
+            transform: scale(1.05);
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 30px 15px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .community-item a {
+                font-size: 1rem;
+            }
+            .back-button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <header>
+        <div class="navbar">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="esport.html">Esports</a>
+            <a href="community.html">Community</a>
+            <a href="offers.html">Offers</a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Gaming Communities</h1>
+        <p>Connect with other gamers and join the conversation!</p>
+        <ul class="community-list">
+            <li class="community-item"><a href="https://www.reddit.com/r/gaming">Reddit Gaming</a></li>
+            <li class="community-item"><a href="https://www.discord.com/invite/gaming">Gaming Discord</a></li>
+            <li class="community-item"><a href="https://www.facebook.com/groups/gaming">Gaming Facebook Group</a></li>
+            <li class="community-item"><a href="https://www.twitch.tv/directory/game/Gaming">Twitch Gaming Streams</a></li>
+            <li class="community-item"><a href="https://www.twitter.com/hashtag/gaming">Gaming on Twitter</a></li>
+        </ul>
+        <a href="homepage.html" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>

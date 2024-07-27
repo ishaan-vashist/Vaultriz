@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esports - VAULTRIZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .main-content {
+            padding: 40px 20px;
+        }
+
+        .heading {
+            margin: 20px 0;
+        }
+
+        .heading h1 {
+            font-size: 4rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .subheading {
+            font-size: 1.4rem;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .events-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .event {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+            margin: 20px;
+        }
+
+        .event:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .event h2 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .event p {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .event img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #FFD700;
+            color: #000;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+            margin: 5px;
+        }
+
+        .button-container a:hover {
+            transform: scale(1.1);
+            background-color: #fff;
+            color: #000;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .heading h1 {
+                font-size: 2.5rem;
+            }
+            .event h2 {
+                font-size: 1.5rem;
+            }
+            .event p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <header>
+        <div class="navbar">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="esport.html">Esports</a>
+            <a href="community.html">Community</a>
+            <a href="offers.html">Offers</a>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="heading">
+            <h1>Esports</h1>
+            <div class="subheading">Stay updated with the latest Esports events and news.</div>
+        </div>
+        <div class="events-section">
+            <div class="event">
+                <img src="https://files.oaiusercontent.com/file-MjP95udTgRyy2yR6PF4RYuxW?se=2024-07-26T19%3A33%3A13Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D5f65fefe-c730-41ea-a5af-8c510e43c05b.webp&sig=oIwH4SfEYmkYUa2VwH0phyQmM/f%2B8RyzFiZ/vcKdtyU%3D" alt="Event 1 Image">
+                <h2>Event 1: Championship Finals</h2>
+                <p>Date: 20th August 2024</p>
+                <p>Description: The final showdown of the season. Watch top teams compete for the championship title.</p>
+            </div>
+            <div class="event">
+                <img src="https://files.oaiusercontent.com/file-dXNPhfNifkXElGNSxnadrBD1?se=2024-07-26T19%3A35%3A43Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D7e48533b-fc86-419c-a1e5-b6baffe3350a.webp&sig=KZF6Gy3arOezf0/f3W/zeK2dTIPtE25XX4P5T4%2BSt1U%3D" alt="Event 2 Image">
+                <h2>Event 2: Regional Qualifiers</h2>
+                <p>Date: 15th September 2024</p>
+                <p>Description: Qualifiers for the regional tournaments. Join and witness the rising stars of Esports.</p>
+            </div>
+            <div class="event">
+                <img src="https://files.oaiusercontent.com/file-KEdmkSkIRrY7zKXJEaWf3aOS?se=2024-07-26T19%3A37%3A24Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dcbfb8b53-1a48-49b5-9805-4eae8021bc64.webp&sig=1F6eAUTCmR6PH5LnozP1BFWbeugBH6iCeEFmIjJHsfE%3D" alt="Event 3 Image">
+                <h2>Event 3: Online Tournament</h2>
+                <p>Date: 10th October 2024</p>
+                <p>Description: An online tournament open to all. Register now and prove your skills.</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="register.html">Register for Events</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+</body>
+</html>

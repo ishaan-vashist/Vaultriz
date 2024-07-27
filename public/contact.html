@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULTRIZ - Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Press Start 2P', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 150px;
+            margin: 0 auto 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #DAA520;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            color: #FFD700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #DAA520;
+            transform: scale(1.1);
+        }
+
+        .back-link {
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #FFD700;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .back-link a:hover {
+            color: #DAA520;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <img src="logo.png" alt="VAULTRIZ Logo" class="logo">
+        <h1>Contact Us</h1>
+        <div class="social-links">
+            <a href="https://www.instagram.com/vashist_iv?igsh=MXNnOWFuaHNnbWM0bg%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+            <a href="https://www.linkedin.com/in/shreyas-bhattacharjee-596898234?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+            <a href="https://x.com/ShreyasBhattac9?t=3BEm5MpvUIzIgoWQVehZ-g&s=09" target="_blank">Twitter (X)</a>
+        </div>
+        <div class="back-link">
+            <a href="about.html">Back to About</a>
+        </div>
+    </div>
+</body>
+</html>

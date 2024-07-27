@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - VAULTRIZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #333;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #444;
+            transform: scale(1.1);
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .profile-info {
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .profile-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+        }
+        .profile-info p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #b0b0b0;
+        }
+        .edit-button {
+            background-color: #333;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .edit-button:hover {
+            background-color: #444;
+            transform: scale(1.1);
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <header>
+        <div class="navbar">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="esport.html">Esports</a>
+            <a href="community.html">Community</a>
+            <a href="offers.html">Offers</a>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="profile-info" id="profile-info">
+            <h2>My Account</h2>
+            <p><strong>Username:</strong> <span id="username">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="email">Loading...</span></p>
+            <a href="#" class="edit-button">Edit Profile</a>
+        </div>
+    </div>
+
+    <script>
+        const userDetailsEndpoint = 'http://localhost:9112/get-user-details';
+
+        async function fetchUserDetails() {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(userDetailsEndpoint, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('username').textContent = data.username;
+                    document.getElementById('email').textContent = data.email;
+                } else {
+                    document.getElementById('username').textContent = 'Error fetching data';
+                    document.getElementById('email').textContent = 'Error fetching data';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('username').textContent = 'Error fetching data';
+                document.getElementById('email').textContent = 'Error fetching data';
+            }
+        }
+
+        window.addEventListener('load', fetchUserDetails);
+    </script>
+</body>
+</html>

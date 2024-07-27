@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - VAULTRIZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #111;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #333;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .navbar a:hover {
+            transform: scale(1.1);
+            background-color: #444;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .settings-section {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        .settings-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .settings-section p {
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+        .settings-section label {
+            display: block;
+            margin: 10px 0;
+        }
+        .settings-section input[type="text"],
+        .settings-section input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .settings-section input[type="submit"] {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .settings-section input[type="submit"]:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <header>
+        <div class="navbar">
+            <a href="homepage.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="esport.html">Esports</a>
+            <a href="#">Community</a>
+            <a href="offers.html">Offers</a>
+        </div>
+    </header>
+    <div class="main-content">
+        <div class="settings-section">
+            <h2>Settings</h2>
+            <form id="theme-form">
+                <label for="theme-color">Change Theme Color:</label>
+                <input type="text" id="theme-color" name="theme-color" placeholder="Enter a color (e.g., #ff0000)">
+                <input type="submit" value="Change Theme">
+            </form>
+            <form id="password-form">
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password" name="current-password">
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" name="new-password">
+                <input type="submit" value="Update Password">
+            </form>
+            <form id="notifications-form">
+                <label>
+                    <input type="checkbox" id="email-notifications" name="email-notifications"> Email Notifications
+                </label>
+                <input type="submit" value="Save Preferences">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('theme-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const color = document.getElementById('theme-color').value;
+            document.body.style.backgroundColor = color;
+            alert('Theme color changed to ' + color);
+        });
+
+        document.getElementById('password-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            alert('Password updated successfully.');
+        });
+
+        document.getElementById('notifications-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const emailNotifications = document.getElementById('email-notifications').checked;
+            alert('Notification preferences updated.');
+        });
+    </script>
+</body>
+</html>

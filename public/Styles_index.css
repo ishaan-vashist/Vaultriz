@@ -1,0 +1,76 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url("C:\Users\ishaa\Desktop\mock-gateway\mock-gateway\bloospace.jpg");
+    background-size: cover;
+}
+
+.container {
+    background: #20232a;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: border-radius 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    border-radius: 20px;
+    box-shadow: 0 0 100px #00f7ff;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    font-size: 16px;
+    text-shadow: 0.1px 0.1px 0 #000, -0.1px 0.1px 0 #000, 0.1px -0.1px 0 #000, -0.1px -0.1px 0 #000;
+}
+
+h1 {
+    margin-bottom: 1em;
+    text-shadow: 1px 1px 0 #000, -0.1px 0.1px 0 #000, 0.1px -0.1px 0 #000, -0.1px -0.1px 0 #000;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 0.5em 0 0.2em;
+}
+
+input {
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+button {
+    background: #ff6f61;
+    color: white;
+    padding: 0.7em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #ff4b47;
+}
+
+#payment-message {
+    margin-top: 1em;
+}

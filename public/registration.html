@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULTRIZ - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .registration-box {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 300px;
+        }
+
+        .registration-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .registration-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .registration-box button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .registration-box button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+
+        .registration-box a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+
+        .heading {
+            margin-bottom: 20px;
+        }
+
+        .heading h1 {
+            font-size: 3rem;
+            color: rgb(218, 218, 223);
+            text-shadow: 0 0 10px rgb(242, 242, 246), 0 0 20px rgb(235, 235, 242);
+        }
+
+        .subheading {
+            font-size: 1rem;
+            color: rgb(200, 200, 200);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <div class="heading">
+            <h1>VAULTRIZ</h1>
+            <div class="subheading">Create Your Account</div>
+        </div>
+        <div class="registration-box">
+            <h2>Register</h2>
+            <form id="registration-form">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <a href="login.html">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            const registerEndpoint = 'http://localhost:9112/register';
+
+            try {
+                const response = await fetch(registerEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Registration successful!');
+                    window.location.href = 'login.html'; // Redirect to login page
+                } else {
+                    alert('Registration failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error registering:', error);
+
+                if (error.message.includes('<!DOCTYPE html>')) {
+                    alert('Server returned an unexpected response. Please try again later.');
+                } else {
+                    alert('Registration failed. Please try again later.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULTRIZ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #111;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #333;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .navbar a:hover {
+            transform: scale(1.1);
+            background-color: #444;
+        }
+        .points {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            margin: auto;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .login-register {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .login-button, .profile-name {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        .account-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .account-menu .item {
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .account-menu .item:hover {
+            background-color: #555;
+        }
+        .login-register:hover .account-menu {
+            display: flex;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .more-news {
+            margin-top: 20px;
+        }
+        .more-news a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #333;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .more-news a:hover {
+            transform: scale(1.1);
+            background-color: #444;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            z-index: -1;
+            animation: move 200s linear infinite;
+        }
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 10000px 10000px; }
+        }
+        .heading {
+            margin: 20px 0;
+        }
+        .heading h1 {
+            font-size: 3.5rem;
+            color: rgb(218, 218, 223);
+            text-shadow: 0 0 10px rgb(242, 242, 246), 0 0 20px rgb(235, 235, 242);
+        }
+        .subheading {
+            font-size: 1.2rem;
+            color: rgb(200, 200, 200);
+        }
+        .carousel {
+            margin-top: 20px;
+            position: relative;
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-inner {
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-item {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
+            box-sizing: border-box;
+            transition: opacity 1s ease;
+            opacity: 0;
+            flex-direction: column;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .carousel-item h2 {
+            font-size: 1.2rem;
+            color: #fff;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            margin-top: 10px;
+        }
+        .carousel-item.active {
+            opacity: 1;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="heading">
+        <h1>VAULTRIZ</h1>
+        <div class="subheading">A one-stop solution for gamers</div>
+    </div>
+    <div class="points">Points: <span id="points">Loading...</span></div>
+    <div class="login-register">
+        <div class="login-button" id="login-button">LOGIN</div>
+        <div class="profile-name" id="profile-name" style="display: none;"></div>
+        <div class="account-menu" id="account-menu">
+            <a href="login.html" id="login-link" class="item">Login</a>
+            <a href="registration.html" id="register-link" class="item">Register</a>
+            <a href="my-account.html" class="item" id="my-account-link" style="display: none;">My Account</a>
+            <a href="settings.html" class="item" id="settings-link" style="display: none;">Settings</a>
+            <a href="#" class="item" id="logout-link">Logout</a>
+        </div>
+    </div>
+    <header>
+        <div class="navbar" id="navbar">
+            <a href="about.html">About Us</a>
+            <a href="esport.html">Esports</a>
+            <a href="community.html">Community</a>
+            <a href="offers.html">Offers</a>
+        </div>
+    </header>
+    <div class="carousel" id="carousel">
+        <div class="carousel-inner" id="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://files.oaiusercontent.com/file-0RRBlfRU8xyb3A4aUblxuTMB?se=2024-07-26T16%3A33%3A47Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D16a34d63-aafc-4fb0-b233-6f4d0dad4a2e.webp&sig=qUF2wd9DoD9pk8C0AmISv4X/WB2TDSlXBKsF8WKZ%2BXI%3D" alt="News 1">
+                <h2>Exciting Updates in the Gaming World!</h2>
+            </div>
+            <div class="carousel-item">
+                <img src="file:///C:/Users/ishaa/Downloads/DALL%C2%B7E%202024-07-26%2021.56.46%20-%20A%20detailed%20image%20of%20a%20Counter-Strike_%20Global%20Offensive%20(CS_GO)%20scene.%20Show%20a%20dramatic%20firefight%20in%20an%20urban%20setting,%20with%20players%20in%20tactical%20gear%20exc.webp" alt="News 2">
+                <h2>New Game Releases This Month!</h2>
+            </div>
+            <div class="carousel-item">
+                <img src="https://files.oaiusercontent.com/file-agLaLkVOHalKEaLKJBqVd27g?se=2024-07-26T16%3A34%3A41Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D06b88e2b-92bb-42c4-8873-fd93de999f40.webp&sig=xV82K8uQmGk3t2TtukbW19r5yH60E8b%2Bag93p8ABBdA%3D" alt="News 3">
+                </a><h2>Upcoming eSports Tournaments!</h2>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="more-news">
+            <a href="more-news.html" class="button">More News</a>
+        </div>
+    </div>
+
+    <script>
+        const pointsEndpoint = 'http://localhost:9112/get-user-points';
+        const userDetailsEndpoint = 'http://localhost:9112/get-user-details';
+
+        async function fetchPoints(username) {
+            try {
+                const response = await fetch(`${pointsEndpoint}?username=${encodeURIComponent(username)}`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('points').textContent = data.points;
+                } else {
+                    document.getElementById('points').textContent = 'Error fetching points';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('points').textContent = 'Error fetching points';
+            }
+        }
+
+        async function fetchUserDetails() {
+            const token = localStorage.getItem('token');
+            try {
+                const response = await fetch(userDetailsEndpoint, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('profile-name').textContent = data.username;
+                    document.getElementById('profile-name').style.display = 'block';
+                    document.getElementById('login-button').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('logout-link').style.display = 'block';
+                    document.getElementById('my-account-link').style.display = 'block';
+                    document.getElementById('settings-link').style.display = 'block';
+                    const mockGatewayLink = document.createElement('a');
+                    mockGatewayLink.href = 'payment.html';
+                    mockGatewayLink.textContent = 'Mock-gateway';
+                    document.getElementById('navbar').appendChild(mockGatewayLink);
+                    fetchPoints(data.username);
+                } else {
+                    document.getElementById('profile-name').style.display = 'none';
+                    document.getElementById('login-button').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('logout-link').style.display = 'none';
+                    document.getElementById('my-account-link').style.display = 'none';
+                    document.getElementById('settings-link').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('profile-name').style.display = 'none';
+                document.getElementById('login-button').style.display = 'block';
+                document.getElementById('login-link').style.display = 'block';
+                document.getElementById('register-link').style.display = 'block';
+                document.getElementById('logout-link').style.display = 'none';
+                document.getElementById('my-account-link').style.display = 'none';
+                document.getElementById('settings-link').style.display = 'none';
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            document.getElementById('profile-name').style.display = 'none';
+            document.getElementById('login-button').style.display = 'block';
+            document.getElementById('login-link').style.display = 'block';
+            document.getElementById('register-link').style.display = 'block';
+            document.getElementById('logout-link').style.display = 'none';
+            document.getElementById('my-account-link').style.display = 'none';
+            document.getElementById('settings-link').style.display = 'none';
+            document.getElementById('points').textContent = 'Loading...';
+            const navbar = document.getElementById('navbar');
+            const mockGatewayLink = navbar.querySelector('a[href="payment.html"]');
+            if (mockGatewayLink) {
+                navbar.removeChild(mockGatewayLink);
+            }
+        }
+
+        document.getElementById('logout-link').addEventListener('click', logout);
+
+        window.addEventListener('load', () => {
+            fetchUserDetails();
+        });
+
+        let currentSlide = 0;
+        const carouselItems = document.querySelectorAll('.carousel-item');
+
+        function showNextSlide() {
+            carouselItems[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % carouselItems.length;
+            carouselItems[currentSlide].classList.add('active');
+        }
+
+        setInterval(showNextSlide, 3000); // 3 seconds
+    </script>
+</body>
+</html>
