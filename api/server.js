@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 9112;
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '..', 'public'))); // Serve static files from the 'public' directory
+app.use(express.static('public')); // Serve static files from the 'public' directory
 
 // MongoDB Connection
 const mongoUri = process.env.MONGODB_URI;
@@ -165,9 +165,9 @@ app.post('/logout', (req, res) => {
     res.json({ success: true, message: 'Logged out successfully' });
 });
 
-// Catch-all route to serve the static files
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+// Serve homepage.html as the default page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
 });
 
 // Start the server
