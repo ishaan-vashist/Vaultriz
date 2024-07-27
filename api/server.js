@@ -170,6 +170,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'homepage.html'));
 });
 
+// Serve registration.html for the registration route
+app.get('/registration.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'registration.html'));
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
