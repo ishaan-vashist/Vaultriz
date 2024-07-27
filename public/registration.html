@@ -143,13 +143,9 @@
                     body: JSON.stringify({ username, email, password })
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Network response was not ok: ${response.statusText}`);
-                }
-
                 const data = await response.json();
 
-                if (data.success) {
+                if (response.ok) {
                     alert('Registration successful!');
                     window.location.href = 'login.html'; // Redirect to login page
                 } else {
