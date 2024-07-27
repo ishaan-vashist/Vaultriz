@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 9112;
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use(express.static('public')); // Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, '..', 'public'))); // Serve static files from the 'public' directory
 
 // MongoDB Connection
 const mongoUri = process.env.MONGODB_URI;
@@ -52,7 +52,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Endpoint for user registration
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -74,7 +74,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Endpoint for user login
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -102,7 +102,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Endpoint for processing payments
-app.post('/process-payment', authenticateToken, async (req, res) => {
+app.post('/api/process-payment', authenticateToken, async (req, res) => {
     const { amount } = req.body;
     const username = req.user.username; // Use authenticated user
 
@@ -127,7 +127,7 @@ app.post('/process-payment', authenticateToken, async (req, res) => {
 });
 
 // Endpoint to get user points by username
-app.get('/get-user-points', async (req, res) => {
+app.get('/api/get-user-points', async (req, res) => {
     const { username } = req.query;
 
     if (!username) {
@@ -147,7 +147,7 @@ app.get('/get-user-points', async (req, res) => {
 });
 
 // Endpoint to get user details (secured)
-app.get('/get-user-details', authenticateToken, async (req, res) => {
+app.get('/api/get-user-details', authenticateToken, async (req, res) => {
     try {
         const user = await User.findById(req.user.userId);
         if (user) {
@@ -161,13 +161,13 @@ app.get('/get-user-details', authenticateToken, async (req, res) => {
 });
 
 // Endpoint to logout (clear token/session)
-app.post('/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
     res.json({ success: true, message: 'Logged out successfully' });
 });
 
 // Serve homepage.html as the default page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'homepage.html'));
 });
 
 // Start the server
