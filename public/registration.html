@@ -133,7 +133,8 @@
                 return;
             }
 
-            const registerEndpoint = 'http://localhost:9112/register';
+            // Update this URL to your deployed Vercel project URL
+            const registerEndpoint = 'https://your-vercel-project-url.vercel.app/api/register';
 
             try {
                 const response = await fetch(registerEndpoint, {
