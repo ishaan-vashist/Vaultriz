@@ -28,7 +28,7 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 30px;
             text-transform: uppercase;
             color: #DAA520;
@@ -43,7 +43,7 @@
         }
 
         label {
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
             color: #FFD700;
             text-align: left;
@@ -71,6 +71,7 @@
             border: 1px solid #ccc;
             width: 100%;
             transition: transform 0.3s;
+            text-align: center;
         }
 
         input[type="text"]:focus, input[type="number"]:focus, input[type="password"]:focus {
@@ -95,7 +96,7 @@
         }
 
         input[type="submit"] {
-            padding: 10px 20px;
+            padding: 15px 20px;
             font-size: 1rem;
             background-color: #DAA520;
             color: white;
@@ -103,6 +104,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
         }
 
         input[type="submit"]:hover {
@@ -113,6 +117,7 @@
         .error-message {
             color: red;
             margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         .security-notice {
@@ -195,10 +200,7 @@
             </div>
             <input type="submit" value="Process Payment">
         </form>
-        <div class="note">(No card information is saved)</div>
         <div id="payment-message" class="error-message"></div>
-        <div class="security-notice">
-        </div>
     </div>
 
     <script>
