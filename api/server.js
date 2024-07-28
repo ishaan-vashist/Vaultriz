@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: ['https://vaultriz-ishaan-vashists-projects.vercel.app', 'https://vaultriz.vercel.app/api/register','https://vaultriz.vercel.app/api/payment'], // Front-end origins
+    origin: ['https://vaultriz-ishaan-vashists-projects.vercel.app', 'https://vaultriz.vercel.app'], // Front-end origins
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
