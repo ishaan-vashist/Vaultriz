@@ -88,7 +88,7 @@
         // Function to fetch user points from server
         async function fetchUserPoints(username) {
             try {
-                const response = await fetch(`http://localhost:9112/get-user-points?username=${encodeURIComponent(username)}`);
+                const response = await fetch(https://vaultriz.vercel.app/api/process-payment/get-user-points?username=${encodeURIComponent(username)}`);
                 if (!response.ok) {
                     throw new Error('HTTP error! Status: ' + response.status);
                 }
